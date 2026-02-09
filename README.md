@@ -14,6 +14,7 @@ Key Features
 ☁️ Cloud Sync - Automatic incident upload to AWS DynamoDB with S3 evidence storage
 📊 Live Dashboard - Streamlit-based real-time monitoring interface
 🚀 Automated Launch - One-command system initialization with health checks
+
 🏗️ System Architecture
 ┌─────────────────────────────────────────────────────────────┐
 │                     GAGAN NETRA SYSTEM                       │
@@ -42,6 +43,7 @@ Key Features
 │                                    │   (Port 8501)        │ │
 │                                    └──────────────────────┘ │
 └─────────────────────────────────────────────────────────────┘
+
 🛠️ Hardware Requirements
 Compute Platform
 NVIDIA Jetson Nano/Xavier NX/Orin - AI processing unit
@@ -55,6 +57,7 @@ Optional: Display for live preview (HDMI)
 Network Configuration
 USB Network Interface - GoPro → Jetson (172.28.180.x subnet)
 WiFi/Ethernet - Cloud connectivity for AWS sync
+
 📦 Software Dependencies
 Core Libraries
 # Computer Vision
@@ -80,6 +83,7 @@ pandas==2.0.3
 
 # Video Processing
 ffmpeg-python==0.2.0
+
 🚀 Installation
 1. Clone Repository
 git clone https://github.com/yourusername/gagan-netra.git
@@ -93,17 +97,20 @@ sudo apt install -y ffmpeg v4l2loopback-dkms
 
 # Install Python development tools
 sudo apt install -y python3-pip python3-dev
+
 3. Install Python Packages
 pip3 install -r requirements.txt
+
 4. Configure AWS Credentials
 aws configure
 # Enter your AWS Access Key ID
 # Enter your AWS Secret Access Key
 # Default region: ap-south-1
 # Default output format: json
-5. Setup v4l2loopback
+
+6. Setup v4l2loopback
 sudo modprobe v4l2loopback exclusive_caps=1 card_label="GoPro42" video_nr=42
-6. Configure Auto-start (Optional)
+7. Configure Auto-start (Optional)
 # Add to /etc/rc.local or create systemd service
 sudo nano /etc/systemd/system/gagan-netra.service
 🎯 Usage
@@ -111,6 +118,7 @@ Quick Start
 cd ~/gagan_netra
 chmod +x launch_gagan_netra.sh
 ./launch_gagan_netra.sh
+
 The launch script will:
 
 ✅ Clean up previous processes
@@ -155,12 +163,12 @@ Fire Source Categories
 🔧 Configuration Files
 Network Settings
 Edit IP addresses in launch_gagan_netra.sh:
-
 # GoPro static IP
 GOPRO_IP="172.28.180.51"
 
 # Auto-detected Jetson IP on USB interface
 JETSON_IP=$(ip -4 addr show dev usb0 | grep -oP 'inet\s+\K[\d.]+')
+
 GPS Port Configuration
 Edit in gps_reader.py:
 
@@ -172,6 +180,7 @@ Edit in main.py:
 dynamodb = boto3.resource('dynamodb', region_name='ap-south-1')
 table = dynamodb.Table('GaganNetraIncidents')
 s3_bucket = 'gagan-netra-evidence'
+
 🐛 Troubleshooting
 GoPro Connection Issues
 # Check USB network interface
@@ -189,6 +198,7 @@ ls -l /dev/ttyUSB*
 
 # Check MAVLink messages
 mavproxy.py --master=/dev/ttyACM0 --baudrate=115200
+
 FFmpeg Stream Failure
 # Check v4l2loopback
 lsmod | grep v4l2loopback
@@ -225,6 +235,7 @@ gagan-netra/
 ├── requirements.txt            # Python dependencies
 ├── .gitignore                 # Git exclusions
 └── README.md                  # This file
+
 🔐 Security Notes
 Never commit AWS credentials - Use IAM roles or environment variables
 Sanitize GPS coordinates - Implement geofencing for sensitive areas
