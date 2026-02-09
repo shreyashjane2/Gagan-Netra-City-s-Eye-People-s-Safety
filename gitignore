@@ -1,0 +1,95 @@
+# GAGAN NETRA - GitHub Ignore Rules
+
+# ============================================
+# FIRE DETECTION MODEL (EXCLUDED)
+# ============================================
+fire_detection/
+**/fire_detection/
+models/
+*.pt
+*.pth
+*.onnx
+*.tflite
+*.h5
+*.pb
+
+# ============================================
+# LOGS & RUNTIME DATA
+# ============================================
+logs/
+*.log
+gagan_netra_flight_log.csv
+*.csv
+
+# ============================================
+# PYTHON
+# ============================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+venv/
+ENV/
+env/
+
+# ============================================
+# JETPACK & CUDA
+# ============================================
+*.engine
+*.trt
+
+# ============================================
+# AWS CREDENTIALS (SECURITY)
+# ============================================
+.aws/
+*.pem
+*.key
+aws_credentials.json
+config.json
+
+# ============================================
+# MEDIA FILES
+# ============================================
+*.mp4
+*.avi
+*.mkv
+*.mov
+evidence_images/
+snapshots/
+recordings/
+
+# ============================================
+# SYSTEM FILES
+# ============================================
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+*.sublime-*
+
+# ============================================
+# BACKUP FILES
+# ============================================
+*.backup
+*.bak
+*.old
